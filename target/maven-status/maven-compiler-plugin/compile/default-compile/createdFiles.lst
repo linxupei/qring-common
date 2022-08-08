@@ -1,0 +1,7 @@
+com\qring\common\base\annotation\qring\QringConfig.class
+com\qring\common\base\annotation\qring\QringAnnotationAdvisor.class
+com\qring\common\base\annotation\qring\QringInterceptor.class
+com\qring\common\base\result\ResultCode.class
+com\qring\common\base\result\ResultData.class
+com\qring\common\mybatis\ListTypeHandler.class
+com\qring\common\base\annotation\qring\Qring.class
