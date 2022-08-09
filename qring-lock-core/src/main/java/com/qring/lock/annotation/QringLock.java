@@ -29,6 +29,8 @@ public @interface QringLock {
      */
     Class<? extends LockExecutor> executor() default LockExecutor.class;
 
+    // TODO: 锁类型
+
     /**
      * 未设置默认 30s, 单位: 毫秒
      * @return 锁过期时间
