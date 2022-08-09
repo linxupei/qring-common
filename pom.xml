@@ -6,13 +6,21 @@
 
     <groupId>com.qring</groupId>
     <artifactId>qring-common</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
+    <packaging>pom</packaging>
+    <version>1.0.1-SNAPSHOT</version>
+    <modules>
+        <module>qring-lock-core</module>
+        <module>qring-lock-redis-spring-boot-starter</module>
+        <module>qring-lock-redisson-spring-boot-starter</module>
+        <module>qring-common-test</module>
+        <module>qring-common-base</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
+        <relativePath/>
     </parent>
 
     <properties>
@@ -22,75 +30,71 @@
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
         <hutool.version>5.8.0</hutool.version>
         <fastjson.version>2.0.8</fastjson.version>
+        <redisson.version>3.13.6</redisson.version>
     </properties>
 
-
     <dependencies>
-        <!--  Jackson start  -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
+        <!--  lombok start  -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <!--  Jackson end  -->
-
-        <!--  Mybatis start  -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-        <!--  Mybatis end  -->
-
-        <!--  Hutool start  -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>
-        <!--  Hutool end  -->
-
-        <!--  Fastjson start  -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-        <!--  Fastjson end  -->
-
-        <!--    Spring start    -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--    Spring end    -->
-
-        <!--    redis start    -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <!--    redis end    -->
+        <!--  lombok end  -->
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!--  Jackson start  -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--  Jackson end  -->
+
+            <!--  Mybatis start  -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--  Mybatis end  -->
+
+            <!--  Hutool start  -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!--  Hutool end  -->
+
+            <!--  Fastjson start  -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--  Fastjson end  -->
+
+            <!--    redisson start    -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <!--    redisson start    -->
+        </dependencies>
+    </dependencyManagement>
 </project>

@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.qring.common.base.annotation.qring.QringConfig, \
-  com.qring.common.base.lock.executor.redis.RedisTemplateLockAutoConfiguration
