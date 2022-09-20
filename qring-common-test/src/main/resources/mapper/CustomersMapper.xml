@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qring.common.test.repository.mapper.CustomersMapper">
+  <resultMap id="BaseResultMap" type="com.qring.common.test.repository.model.pojo.Customers">
+    <!--@mbg.generated-->
+    <!--@Table customers-->
+    <id column="cust_id" jdbcType="INTEGER" property="custId" />
+    <result column="cust_name" jdbcType="CHAR" property="custName" />
+    <result column="cust_address" jdbcType="CHAR" property="custAddress" />
+    <result column="cust_city" jdbcType="CHAR" property="custCity" />
+    <result column="cust_state" jdbcType="CHAR" property="custState" />
+    <result column="cust_zip" jdbcType="CHAR" property="custZip" />
+    <result column="cust_country" jdbcType="CHAR" property="custCountry" />
+    <result column="cust_contact" jdbcType="CHAR" property="custContact" />
+    <result column="cust_email" jdbcType="CHAR" property="custEmail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, 
+    cust_contact, cust_email
+  </sql>
+</mapper>

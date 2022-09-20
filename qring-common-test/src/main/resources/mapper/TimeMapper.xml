@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qring.common.test.repository.mapper.TimeMapper">
+  <resultMap id="BaseResultMap" type="com.qring.common.test.repository.model.pojo.Time">
+    <!--@mbg.generated-->
+    <!--@Table `time`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="event_time" jdbcType="TIMESTAMP" property="eventTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, event_time, create_time
+  </sql>
+
+
+  <select id="list" resultType="com.qring.common.test.repository.model.vo.TimeVO">
+    select id, event_time, create_time from time;
+  </select>
+
+  <insert id="insertOnWhere">
+    insert into time(event_time, create_time) select #{time.eventTime}, #{time.eventTime} from dual
+    where not exists (select * from time where event_time=#{eventTime})
+  </insert>
+</mapper>
