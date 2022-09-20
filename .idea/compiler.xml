@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="qring-swagger-test" />
         <module name="qring-lock-redis-spring-boot-starter" />
         <module name="qring-common-test" />
         <module name="qring-lock-core" />
@@ -14,6 +15,9 @@
         <module name="qring-lock-redisson-spring-boot-starter" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="qring-test-mybatis" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -23,6 +27,8 @@
       <module name="qring-lock-core" options="-parameters" />
       <module name="qring-lock-redis-spring-boot-starter" options="-parameters" />
       <module name="qring-lock-redisson-spring-boot-starter" options="-parameters" />
+      <module name="qring-swagger-test" options="-parameters" />
+      <module name="qring-test-mybatis" options="-parameters" />
     </option>
   </component>
 </project>
