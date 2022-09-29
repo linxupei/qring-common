@@ -1,6 +1,6 @@
 package com.qring.swagger.test.controller;
 
-import com.qring.swagger.test.repository.model.dto.DTO;
+import com.qring.swagger.test.repository.model.dto.ResponseDTO;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
 
     @PostMapping("test")
-    public void test(@RequestBody DTO dto) {
-        System.out.println(dto);
-        //return dto;
+    public void test(@RequestBody ResponseDTO responseDto) {
+        System.out.println(responseDto);
+        //return responseDto;
     }
 }

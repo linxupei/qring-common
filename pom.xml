@@ -29,13 +29,17 @@
         <maven.compiler.target>8</maven.compiler.target>
         <jackson.version>2.13.3</jackson.version>
         <mybatis.version>3.5.9</mybatis.version>
-        <mybatis-plus.version>3.5.0</mybatis-plus.version>
+        <mybatis-plus.version>3.0.5</mybatis-plus.version>
         <hutool.version>5.8.0</hutool.version>
         <fastjson.version>2.0.8</fastjson.version>
         <redisson.version>3.13.6</redisson.version>
         <pagehelper.version>1.4.3</pagehelper.version>
         <swagger2.version>2.9.2</swagger2.version>
         <flyway.version>5.2.4</flyway.version>
+        <liquibase.version>4.3.5</liquibase.version>
+        <druid.version>1.2.1</druid.version>
+        <nacos.version>0.2.5</nacos.version>
+        <mysql-backup4j.version>1.2.1</mysql-backup4j.version>
     </properties>
 
     <dependencies>
@@ -50,6 +54,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.smattme</groupId>
+                <artifactId>mysql-backup4j</artifactId>
+                <version>${mysql-backup4j.version}</version>
+            </dependency>
+
             <!--  pagehelper start  -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
@@ -132,7 +142,7 @@
             </dependency>
             <!--    swagger2 end    -->
 
-            <!--    flywaydb end    -->
+            <!--    flywaydb start    -->
             <dependency>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-core</artifactId>
@@ -140,11 +150,26 @@
             </dependency>
             <!--    flywaydb end    -->
 
+            <!--    liquibase start    -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+            <!--    liquibase end    -->
+
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.21</version>
+                <version>${druid.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -155,6 +180,11 @@
                     <groupId>org.flywaydb</groupId>
                     <artifactId>flyway-maven-plugin</artifactId>
                     <version>${flyway.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>${liquibase.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

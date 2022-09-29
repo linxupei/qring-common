@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qring.common.test.repository.mapper.FaulteventMapper">
+  <resultMap id="BaseResultMap" type="com.qring.common.test.repository.model.Faultevent">
+    <!--@mbg.generated-->
+    <!--@Table faultevent-->
+    <id column="eventPkId" jdbcType="BIGINT" property="eventPkId" />
+    <result column="projectPkId" jdbcType="VARCHAR" property="projectPkId" />
+    <result column="eventCode" jdbcType="VARCHAR" property="eventCode" />
+    <result column="eventType" jdbcType="VARCHAR" property="eventType" />
+    <result column="eventTime" jdbcType="TIMESTAMP" property="eventTime" />
+    <result column="recoverTime" jdbcType="TIMESTAMP" property="recoverTime" />
+    <result column="eventDetail" jdbcType="VARCHAR" property="eventDetail" />
+    <result column="tenantPkId" jdbcType="VARCHAR" property="tenantPkId" />
+    <result column="tenantCode" jdbcType="VARCHAR" property="tenantCode" />
+    <result column="tenantName" jdbcType="VARCHAR" property="tenantName" />
+    <result column="tenantPhone" jdbcType="VARCHAR" property="tenantPhone" />
+    <result column="meterPkId" jdbcType="VARCHAR" property="meterPkId" />
+    <result column="meterName" jdbcType="VARCHAR" property="meterName" />
+    <result column="meterSn" jdbcType="VARCHAR" property="meterSn" />
+    <result column="confirmFlag" jdbcType="TINYINT" property="confirmFlag" />
+    <result column="confirmTime" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="confirmDesc" jdbcType="VARCHAR" property="confirmDesc" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="createUserPkId" jdbcType="VARCHAR" property="createUserPkId" />
+    <result column="modifyTime" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modifyUserPkId" jdbcType="VARCHAR" property="modifyUserPkId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    eventPkId, projectPkId, eventCode, eventType, eventTime, recoverTime, eventDetail, 
+    tenantPkId, tenantCode, tenantName, tenantPhone, meterPkId, meterName, meterSn, confirmFlag, 
+    confirmTime, confirmDesc, createTime, createUserPkId, modifyTime, modifyUserPkId
+  </sql>
+  <insert id="batchInsert" keyColumn="eventPkId" keyProperty="eventPkId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into faultevent
+    (projectPkId, eventCode, eventType, eventTime, recoverTime, eventDetail, tenantPkId, 
+      tenantCode, tenantName, tenantPhone, meterPkId, meterName, meterSn, confirmFlag, 
+      confirmTime, confirmDesc, createTime, createUserPkId, modifyTime, modifyUserPkId
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.projectPkId,jdbcType=VARCHAR}, #{item.eventCode,jdbcType=VARCHAR}, #{item.eventType,jdbcType=VARCHAR}, 
+        #{item.eventTime,jdbcType=TIMESTAMP}, #{item.recoverTime,jdbcType=TIMESTAMP}, #{item.eventDetail,jdbcType=VARCHAR}, 
+        #{item.tenantPkId,jdbcType=VARCHAR}, #{item.tenantCode,jdbcType=VARCHAR}, #{item.tenantName,jdbcType=VARCHAR}, 
+        #{item.tenantPhone,jdbcType=VARCHAR}, #{item.meterPkId,jdbcType=VARCHAR}, #{item.meterName,jdbcType=VARCHAR}, 
+        #{item.meterSn,jdbcType=VARCHAR}, #{item.confirmFlag,jdbcType=TINYINT}, #{item.confirmTime,jdbcType=TIMESTAMP}, 
+        #{item.confirmDesc,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createUserPkId,jdbcType=VARCHAR}, 
+        #{item.modifyTime,jdbcType=TIMESTAMP}, #{item.modifyUserPkId,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

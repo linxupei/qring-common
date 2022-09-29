@@ -1,8 +1,5 @@
 package com.qring.common.test.repository.mapper;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.qring.common.test.repository.model.pojo.Customers;
-
 /**
  * @Author Qring
  * @Description TODO
@@ -11,8 +8,6 @@ import com.qring.common.test.repository.model.pojo.Customers;
  */
 class CustomersMapperTest {
     public static void main(String[] args) {
-        LambdaQueryWrapper<Customers> queryWrapper = new LambdaQueryWrapper<Customers>()
-                .eq(Customers::getCustCity, "")
-                .orderByAsc(Customers::getCustCity);
+
     }
 }

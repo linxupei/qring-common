@@ -21,7 +21,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="qring-common" options="-parameters" />
+      <module name="qring-common" options="" />
       <module name="qring-common-base" options="-parameters" />
       <module name="qring-common-test" options="-parameters" />
       <module name="qring-lock-core" options="-parameters" />
