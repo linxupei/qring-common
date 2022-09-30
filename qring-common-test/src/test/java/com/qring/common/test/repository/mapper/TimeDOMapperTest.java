@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -86,24 +85,4 @@ class TimeDOMapperTest {
         faulteventService.saveBatch(faulteventDOList);
     }
 
-    public static String newMultiSwitch(int day) {
-        return switch (day) {
-            case 1, 2, 3, 4, 5 -> "workday";
-            case 6, 7 -> "weekend";
-            default -> "invalid";
-        };
-    }
-
-    public static String getNewPrettyPrintJson() {
-        return """
-               {
-                    "firstName": "Piotr",
-                    "lastName": "Mińkowski"
-               }
-               """;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(LocalDateTime.now());
-    }
 }

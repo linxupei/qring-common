@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,8 +30,9 @@ import java.util.List;
  * @Version 1.0
  */
 @RestController
+@RequestMapping("/rest/template")
 @Slf4j
-public class TestController {
+public class RestTemplateTestController {
     @Resource
     private TimeMapper timeMapper;
     @Resource
@@ -75,7 +77,7 @@ public class TestController {
             // 动态设置响应类型，根据前台传递文件类型设置响应类型
             response.setContentType(request.getSession().getServletContext().getMimeType(extendFileName));
             // 设置响应头,attachment表示以附件的形式下载，inline表示在线打开
-            response.setHeader("content-disposition","attachment;fileName=" + URLEncoder.encode(filename,"UTF-8"));
+            response.setHeader("content-disposition","attachment;fileName=" + URLEncoder.encode(filename, StandardCharsets.UTF_8));
             // 获取输出流对象（用于写文件）
             OutputStream os = response.getOutputStream();
             // 下载文件,使用spring框架中的FileCopyUtils工具
