@@ -1,4 +1,4 @@
-package com.qring.common.test.repository.model;
+package com.qring.common.test.repository.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -14,13 +14,9 @@ import java.util.Date;
 * @Date 2022/9/27 10:27
 * @Version 1.0
 */
-
-/**
-    * 告警事件表
-    */
 @Data
 @TableName(value = "faultevent")
-public class Faultevent {
+public class FaulteventDO {
     /**
      * 事件PkID
      */

@@ -1,7 +1,7 @@
 package com.qring.common.test.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qring.common.test.repository.model.Faultevent;
+import com.qring.common.test.repository.model.entity.FaulteventDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,6 +13,6 @@ import java.util.List;
 * @Version 1.0
 */
 
-public interface FaulteventMapper extends BaseMapper<Faultevent> {
-    int batchInsert(@Param("list") List<Faultevent> list);
+public interface FaulteventMapper extends BaseMapper<FaulteventDO> {
+    int batchInsert(@Param("list") List<FaulteventDO> list);
 }

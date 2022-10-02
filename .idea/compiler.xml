@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="qring-swagger-test" />
         <module name="qring-lock-redis-spring-boot-starter" />
         <module name="qring-common-test" />
         <module name="qring-lock-core" />
@@ -16,6 +15,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="qring-swagger-test" target="19" />
       <module name="qring-test-mybatis" target="8" />
     </bytecodeTargetLevel>
   </component>

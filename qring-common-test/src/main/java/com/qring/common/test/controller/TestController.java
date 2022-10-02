@@ -1,10 +1,12 @@
 package com.qring.common.test.controller;
 
+import cn.hutool.json.JSONUtil;
 import com.qring.common.test.repository.mapper.TimeMapper;
 import com.qring.common.test.repository.model.dto.DTO;
 import com.qring.common.test.repository.model.vo.TimeVO;
 import com.qring.common.test.service.TestService;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +29,7 @@ import java.util.List;
  * @Version 1.0
  */
 @RestController
+@Slf4j
 public class TestController {
     @Resource
     private TimeMapper timeMapper;
@@ -107,7 +110,7 @@ public class TestController {
 
     @GetMapping("test00")
     public DTO test00(HttpServletRequest request) {
-        System.out.println(request.getHeaderNames());
+        log.info("{}", JSONUtil.parse(request));
         DTO dto = new DTO();
         dto.setStr("123");
         dto.setList(Arrays.asList("1", "2"));

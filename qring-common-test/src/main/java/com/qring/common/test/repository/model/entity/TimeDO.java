@@ -1,4 +1,4 @@
-package com.qring.common.test.repository.model.pojo;
+package com.qring.common.test.repository.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 */
 @Data
 @TableName(value = "`time`")
-public class Time {
+public class TimeDO {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 

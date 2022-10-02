@@ -50,9 +50,11 @@ spring:
     placeholders:
       name: qring
     out-of-order: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 
-#
 #mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -65,6 +67,5 @@ nacos:
 #    root: INFO
 #    com.baomidou.mybatisplus: DEBUG
 #    mapper: DEBUG
-
 
 

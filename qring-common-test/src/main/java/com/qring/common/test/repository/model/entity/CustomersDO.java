@@ -1,4 +1,4 @@
-package com.qring.common.test.repository.model.pojo;
+package com.qring.common.test.repository.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @TableName(value = "customers")
-public class Customers {
+public class CustomersDO {
     @TableId(value = "cust_id", type = IdType.INPUT)
     private Integer custId;
 

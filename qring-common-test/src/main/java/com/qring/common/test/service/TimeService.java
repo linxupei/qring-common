@@ -1,7 +1,7 @@
 package com.qring.common.test.service;
 
 import com.qring.common.test.repository.mapper.TimeMapper;
-import com.qring.common.test.repository.model.pojo.Time;
+import com.qring.common.test.repository.model.entity.TimeDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class TimeService implements ITimeService {
 //        );
 //        log.info("thread: {}, time: {}, timestamp: {}", Thread.currentThread(), JSONUtil.toJsonStr(time), LocalDateTime.now());
 //        if (time == null) {
-            Time t = new Time();
+            TimeDO t = new TimeDO();
             t.setEventTime(eventTime);
             t.setCreateTime(eventTime);
 

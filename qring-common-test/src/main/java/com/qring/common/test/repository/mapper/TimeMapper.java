@@ -1,7 +1,7 @@
 package com.qring.common.test.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qring.common.test.repository.model.pojo.Time;
+import com.qring.common.test.repository.model.entity.TimeDO;
 import com.qring.common.test.repository.model.vo.TimeVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,12 +15,12 @@ import java.util.List;
  * @Version 1.0
  */
 
-public interface TimeMapper extends BaseMapper<Time> {
-    int insertOrUpdate(Time record);
+public interface TimeMapper extends BaseMapper<TimeDO> {
+    int insertOrUpdate(TimeDO record);
 
-    int insertOrUpdateSelective(Time record);
+    int insertOrUpdateSelective(TimeDO record);
 
     List<TimeVO> list();
 
-    int insertOnWhere(@Param("time") Time time, @Param("eventTime") LocalDateTime eventTime);
+    int insertOnWhere(@Param("timeDO") TimeDO timeDO, @Param("eventTime") LocalDateTime eventTime);
 }

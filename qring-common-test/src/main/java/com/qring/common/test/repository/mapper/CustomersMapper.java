@@ -1,7 +1,7 @@
 package com.qring.common.test.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qring.common.test.repository.model.pojo.Customers;
+import com.qring.common.test.repository.model.entity.CustomersDO;
 
 /**
 * @Author Qring
@@ -9,6 +9,6 @@ import com.qring.common.test.repository.model.pojo.Customers;
 * @Date 2022/8/18 14:28
 * @Version 1.0
 */
-public interface CustomersMapper extends BaseMapper<Customers> {
+public interface CustomersMapper extends BaseMapper<CustomersDO> {
 
 }

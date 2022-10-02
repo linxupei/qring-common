@@ -1,7 +1,6 @@
 package com.qring.common.test.repository.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 
@@ -19,10 +18,7 @@ import java.util.List;
 public class DTO {
 
     @JsonProperty
-    @ApiModelProperty(dataType = "java.lang.String")
     private String str;
 
-    //@JsonDeserialize(using = StringToListWithCommaDeserializer.class)
-    @ApiModelProperty(dataType = "java.lang.Integer")
     private List<String> list;
 }
