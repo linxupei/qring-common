@@ -1,12 +1,12 @@
-package com.qring.common.test.quartz.model;
+package com.qring.common.test.quartz;
 
 /**
  * @Author Qring
- * @Description 定时任务运行周期
- * @Date 2022/9/30 16:02
+ * @Description cron 执行周期
+ * @Date 2022/10/8 9:48
  * @Version 1.0
  */
-public enum CronJobTypeEnum {
+public enum ECronJobType {
     /**
      * 每天
      */
@@ -22,7 +22,7 @@ public enum CronJobTypeEnum {
 
     private final int type;
 
-    CronJobTypeEnum(int type) {
+    ECronJobType(int type) {
         this.type = type;
     }
 

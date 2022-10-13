@@ -1,14 +1,14 @@
-package com.qring.common.test.quartz.util;
+package com.qring.common.test.quartz;
 
-import com.qring.common.test.quartz.model.CronScheduleModel;
+import cn.hutool.core.date.DateUtil;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 
 /**
  * @Author Qring
- * @Description 生成 cron 表达式工具
- * @Date 2022/9/30 15:58
+ * @Description cron 表达式工具类
+ * @Date 2022/10/8 9:40
  * @Version 1.0
  */
 public class CronUtil {
@@ -18,14 +18,13 @@ public class CronUtil {
      * 构建Cron表达式
      * convert Date to cron, eg:  "0 06 10 15 1 ? 2014"
      *
-     * @param date : 时间点
+     * @param date 时间点
      * @return String
      */
     public static String getCron(LocalDateTime date) {
         String dateFormat = "ss mm HH dd MM ? yyyy";
-        return cn.hutool.core.date.DateUtil.format(date, dateFormat);
+        return DateUtil.format(date, dateFormat);
     }
-
 
     /**
      * 构建Cron表达式

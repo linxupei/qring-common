@@ -1,4 +1,4 @@
-package com.qring.common.test.quartz.model;
+package com.qring.common.test.quartz;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import java.util.List;
 
 /**
  * @Author Qring
- * @Description Cron 表达式
- * @Date 2022/9/30 16:00
+ * @Description TODO
+ * @Date 2022/10/8 9:47
  * @Version 1.0
  */
 @Data
@@ -22,18 +22,15 @@ public class CronScheduleModel {
     /**
      * cron周期
      */
-    private CronJobTypeEnum jobType;
-    
+    private ECronJobType jobType;
     /**
      * 小时，未指定则为0
      */
     private Integer hour;
-
     /**
      * 分钟，未指定则为0
      */
     private Integer minuter;
-
     /**
      * 秒，未指定则为0
      */

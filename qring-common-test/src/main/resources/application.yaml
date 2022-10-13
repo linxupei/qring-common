@@ -34,6 +34,9 @@ spring:
       #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
+  quartz:
+    #持久化到数据库方式
+    job-store-type: jdbc
   flyway:
     enabled: true
     # 禁止清理数据库表
