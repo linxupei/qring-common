@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Random;
 
 /**
  * @Author Qring
@@ -21,7 +22,7 @@ import java.time.LocalTime;
 public class JeasyTest {
 
     private EasyRandom easyRandom;
-
+    private int i;
     @BeforeEach
     public void init() {
         EasyRandomParameters parameters = new EasyRandomParameters()
@@ -44,5 +45,13 @@ public class JeasyTest {
     public void test() {
         TimeDO timeDO = easyRandom.nextObject(TimeDO.class);
         System.out.println(timeDO);
+        testException(new Random().nextInt());
+    }
+
+    public void testException(int i) {
+        boolean b = new Random().nextBoolean();
+        if (b) {
+            throw new IllegalArgumentException("@@@");
+        }
     }
 }

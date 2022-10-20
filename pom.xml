@@ -42,6 +42,7 @@
         <guava-retrying.version>2.0.0</guava-retrying.version>
         <jeasy.version>4.0.0</jeasy.version>
         <mysql-backup4j.version>1.2.1</mysql-backup4j.version>
+        <easypoi.version>4.3.0</easypoi.version>
     </properties>
 
     <dependencies>
@@ -56,6 +57,14 @@
 
     <dependencyManagement>
         <dependencies>
+
+
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-base</artifactId>
+                <version>${easypoi.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.smattme</groupId>
                 <artifactId>mysql-backup4j</artifactId>
