@@ -1,7 +1,7 @@
 package com.qring.common.test.repository.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qring.common.test.repository.model.PersonDO;
+import com.qring.common.test.repository.model.entity.PersonDO;
 
 /**
 * @Author Qring

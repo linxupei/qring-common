@@ -3,8 +3,8 @@ package com.qring.common.test.service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qring.common.test.repository.mapper.FaulteventMapper;
 import com.qring.common.test.repository.mapper.PersonMapper;
-import com.qring.common.test.repository.model.PersonDO;
 import com.qring.common.test.repository.model.entity.FaulteventDO;
+import com.qring.common.test.repository.model.entity.PersonDO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +21,8 @@ import java.util.List;
 public class FaulteventService extends ServiceImpl<FaulteventMapper, FaulteventDO> {
     @Resource
     private PersonMapper personMapper;
+    @Resource
+    private PersonService personService;
     
     public int batchInsert(List<FaulteventDO> list) {
         return baseMapper.batchInsert(list);
@@ -30,7 +32,9 @@ public class FaulteventService extends ServiceImpl<FaulteventMapper, FaulteventD
     public void test() {
         PersonDO personDO = new PersonDO();
         personDO.setName("123d");
+        personDO.setAge(1);
+        personDO.setScore(1);
         personMapper.insert(personDO);
-        throw new RuntimeException("test3");
+        personService.saveTest();
     }
 }

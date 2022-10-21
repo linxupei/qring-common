@@ -4,6 +4,7 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
+import lombok.Data;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
 /**
@@ -90,6 +92,25 @@ public class EasyPoiTest {
         FileOutputStream fos = new FileOutputStream("C:\\Users\\DELL\\Desktop\\ExcelExportTemplateColFeTest_two.xlsx");
         book.write(fos);
         fos.close();
+    }
+
+    @Data
+    static class A {
+        Integer a;
+        Integer b;
+    }
+
+    public static void main(String[] args) {
+        ConcurrentHashMap<A, Boolean> resMap = new ConcurrentHashMap<>();
+        HashMap<String, String > map = new HashMap<>();
+        A a = new A();
+        resMap.put(a, true);
+        resMap.put(a, true);
+        System.out.println(a.hashCode());
+        a.setA(1);
+        System.out.println(a.hashCode());
+        resMap.put(a, false);
+        System.out.println(resMap.size());
     }
 
     @Test

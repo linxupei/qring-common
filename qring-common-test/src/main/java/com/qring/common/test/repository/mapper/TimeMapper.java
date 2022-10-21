@@ -16,9 +16,6 @@ import java.util.List;
  */
 
 public interface TimeMapper extends BaseMapper<TimeDO> {
-    int insertOrUpdate(TimeDO record);
-
-    int insertOrUpdateSelective(TimeDO record);
 
     List<TimeVO> list();
 

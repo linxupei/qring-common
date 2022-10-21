@@ -1,4 +1,4 @@
-package com.qring.common.test.repository.model;
+package com.qring.common.test.repository.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -20,4 +20,10 @@ public class PersonDO {
 
     @TableField(value = "`name`")
     private String name;
+
+    @TableField(value = "age")
+    private Integer age;
+
+    @TableField(value = "score")
+    private Integer score;
 }

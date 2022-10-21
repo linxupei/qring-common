@@ -3,14 +3,14 @@ package com.qring.common.test.quartz;
 import com.qring.common.test.Application;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import javax.annotation.Resource;
-
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @Author Qring
@@ -23,17 +23,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class QuartzTaskUtilTest {
     @Resource
     private QuartzTaskUtil quartzTaskUtil;
+    @Resource
+    private SchedulerFactoryBean schedulerFactoryBean;
 
     @Test
     void addJob() throws SchedulerException {
-        quartzTaskUtil.removeJob("j12", null);
-        quartzTaskUtil.addJob("j11", null, "g11", "g1g",
+        quartzTaskUtil.addJob("j11", "j11", "g11", "g1g",
                 HelloJob.class, CronUtil.getCron(LocalDateTime.now().plusSeconds(10)));
     }
 
     @Test
-    void updateScheduleJob() {
-
+    void updateScheduleJob() throws SchedulerException {
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
+        System.out.println(scheduler.checkExists(JobKey.jobKey("j11", "j11")));
+        System.out.println(scheduler.getTriggersOfJob(JobKey.jobKey("j11", "j11")));
+        quartzTaskUtil.removeJob("j11", "j11");
+        System.out.println(scheduler.checkExists(JobKey.jobKey("j11", "j11")));
+        System.out.println(scheduler.getTriggersOfJob(JobKey.jobKey("j11", "j11")));
     }
 
     @Test

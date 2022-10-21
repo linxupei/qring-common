@@ -21,6 +21,6 @@ public class MultipleThreadTestController {
 
     @GetMapping("test1")
     public void test1() {
-        multipleThreadService.test();
+        //multipleThreadService.test();
     }
 }
