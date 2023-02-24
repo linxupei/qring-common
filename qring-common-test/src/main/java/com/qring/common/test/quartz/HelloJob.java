@@ -19,7 +19,6 @@ import javax.annotation.PostConstruct;
  */
 @Slf4j
 public class HelloJob extends QuartzJobBean {
-
     private static final int MAX_RETRY = 5;
     private Retryer<Boolean> retryer;
     @PostConstruct
@@ -34,10 +33,7 @@ public class HelloJob extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-
-    }
-
-    public void addJob() {
-        System.out.println("1");
+        System.out.println("Hello");
+        log.error("Hello!");
     }
 }

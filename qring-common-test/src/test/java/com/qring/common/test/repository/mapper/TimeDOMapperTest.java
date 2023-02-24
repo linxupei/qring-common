@@ -2,6 +2,7 @@ package com.qring.common.test.repository.mapper;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.qring.common.test.Application;
 import com.qring.common.test.repository.model.entity.FaulteventDO;
 import com.qring.common.test.service.FaulteventService;
@@ -75,6 +76,7 @@ class TimeDOMapperTest {
 
     @Test
     public void testMapper() {
+        faulteventMapper.selectList(new LambdaQueryWrapper<FaulteventDO>().eq(FaulteventDO::getConfirmDesc, ""));
         for (int i = 0; i < faulteventListList.size(); i++) {
             faulteventMapper.batchInsert(faulteventListList.get(i));
         }
