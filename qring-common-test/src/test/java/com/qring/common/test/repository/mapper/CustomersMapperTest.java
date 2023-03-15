@@ -1,6 +1,7 @@
 package com.qring.common.test.repository.mapper;
 
-import com.qring.common.test.Application;
+import com.google.common.base.Preconditions;
+import com.qring.common.test.QringCommonTestApplication;
 import com.qring.common.test.quartz.QuartzTaskUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -15,13 +16,13 @@ import javax.annotation.Resource;
  * @Version 1.0
  */
 @Slf4j
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = QringCommonTestApplication.class)
 class CustomersMapperTest {
     @Resource
     private QuartzTaskUtil quartzTaskUtil;
 
     @Test
     public void test() {
-
+        Preconditions.checkNotNull(null);
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 
+import javax.validation.constraints.Past;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ import java.util.List;
         notes = "This method creates a new user")
 public class DTO {
 
+    @Past
     @JsonProperty
     private String str;
 

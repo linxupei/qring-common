@@ -18,6 +18,43 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.qring.common</groupId>
+            <artifactId>qring-common-base</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-base</artifactId>
         </dependency>
@@ -38,26 +75,10 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba</groupId>-->
+        <!--            <artifactId>druid-spring-boot-starter</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
@@ -65,14 +86,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.github.rholder</groupId>
             <artifactId>guava-retrying</artifactId>
@@ -83,30 +100,14 @@
             <artifactId>easy-random-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem-spring-web-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <configuration>
-                    <!-- 此处的信息是读取的application.yml中的信息 -->
-                    <url>jdbc:mysql://106.54.182.186:3306/crashcourse?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;serverTimezone=GMT%2B8&amp;rewriteBatchedStatements=true&amp;useSSL=false</url>
-                    <user>root</user>
-                    <password>oo000000</password>
-                    <driver>com.mysql.cj.jdbc.Driver</driver>
-                    <schemas>crashcourse</schemas>
-                    <locations>
-                        <!-- 创表的sql的位置 -->
-                        <location>filesystem:src/main/resources/db/migration</location>
-                    </locations>
-                    <baselineOnMigrate>true</baselineOnMigrate>
-                    <baselineVersion>2</baselineVersion>
-                    <!--          禁止执行清表操作          -->
-                    <cleanDisabled>true</cleanDisabled>
-                </configuration>
-            </plugin>
-        </plugins>
+
     </build>
 </project>

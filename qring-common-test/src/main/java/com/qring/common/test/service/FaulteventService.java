@@ -1,40 +1,73 @@
 package com.qring.common.test.service;
 
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qring.common.test.repository.mapper.FaulteventMapper;
 import com.qring.common.test.repository.mapper.PersonMapper;
 import com.qring.common.test.repository.model.entity.FaulteventDO;
-import com.qring.common.test.repository.model.entity.PersonDO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
-/**
-* @Author Qring
-* @Description TODO
-* @Date 2022/9/27 10:27
-* @Version 1.0
-*/
 
+/**
+ * @Author Qring
+ * @Description TODO
+ * @Date 2022/9/27 10:27
+ * @Version 1.0
+ */
+@Slf4j
 @Service
 public class FaulteventService extends ServiceImpl<FaulteventMapper, FaulteventDO> {
     @Resource
     private PersonMapper personMapper;
     @Resource
-    private PersonService personService;
-    
+    private PlatformTransactionManager manager;
+
+    @Resource
+    private TransactionDefinition transactionDefinition;
+
     public int batchInsert(List<FaulteventDO> list) {
         return baseMapper.batchInsert(list);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     public void test() {
-        PersonDO personDO = new PersonDO();
-        personDO.setName("123d");
-        personDO.setAge(1);
-        personDO.setScore(1);
-        personMapper.insert(personDO);
-        personService.saveTest();
+        TransactionStatus status = manager.getTransaction(transactionDefinition);
+        try {
+            log.info(JSONUtil.toJsonStr(baseMapper.selectById(1)));
+            manager.commit(status);
+        } catch (Exception e) {
+            manager.rollback(status);
+        } finally {
+            FaulteventDO faulteventDO = new FaulteventDO();
+            faulteventDO.setTenantPkId("1555428127333511169");
+            faulteventDO.setTenantPhone("13824128322");
+            faulteventDO.setTenantName("hwm");
+            faulteventDO.setTenantCode("ZH1000");
+            faulteventDO.setRecoverTime(new Date());
+            faulteventDO.setProjectPkId("1554668581481566210");
+            faulteventDO.setModifyUserPkId("root");
+            faulteventDO.setModifyTime(new Date());
+            faulteventDO.setMeterSn("1555428127333511169");
+            faulteventDO.setMeterPkId("1555428127333511169");
+            faulteventDO.setMeterName("1555428127333511169");
+            faulteventDO.setEventType("1555428127333511169");
+            faulteventDO.setEventTime(new Date());
+
+            faulteventDO.setEventDetail("1555428127333511169");
+            faulteventDO.setEventCode("1555428127333511169");
+            faulteventDO.setCreateUserPkId("1555428127333511169");
+            faulteventDO.setCreateTime(new Date());
+            faulteventDO.setConfirmTime(new Date());
+            faulteventDO.setConfirmFlag((byte) 1);
+            faulteventDO.setConfirmDesc("1555428127333511169");
+            baseMapper.insert(faulteventDO);
+            log.info(JSONUtil.toJsonStr(faulteventDO));
+        }
     }
 }

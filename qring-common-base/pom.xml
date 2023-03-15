@@ -11,6 +11,7 @@
 
     <groupId>com.qring.common</groupId>
     <artifactId>qring-common-base</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
     </properties>
@@ -30,14 +31,25 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
         </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
         <!--  Jackson end  -->
+
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.passay</groupId>
+            <artifactId>passay</artifactId>
         </dependency>
     </dependencies>
 </project>

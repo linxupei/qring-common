@@ -20,11 +20,11 @@ public class AtomicConcurrentTransactionalExecutor {
     @Resource
     private TransactionalWorker transactionalWorker;
 
-    public boolean execute(ExecutorService executorService, Runnable... runnables) {
-        int threadSize = runnables.length;
+    public boolean execute(ExecutorService executorService, Runnable... runnableList) {
+        int threadSize = runnableList.length;
         CyclicBarrier workerCyclicBarrier = new CyclicBarrier(threadSize);
         AtomicInteger successCounter = new AtomicInteger(threadSize);
-        for (Runnable runnable : runnables) {
+        for (Runnable runnable : runnableList) {
             executorService.submit(() -> {
                 try {
                     transactionalWorker.run(workerCyclicBarrier, successCounter, runnable);

@@ -1,5 +1,6 @@
 package com.qring.common.test.controller;
 
+import com.qring.common.base.exception.BizException;
 import com.qring.common.test.quartz.HelloJob;
 import com.qring.common.test.quartz.QuartzTaskUtil;
 import com.qring.common.test.service.MultipleThreadService;
@@ -26,7 +27,7 @@ public class MultipleThreadTestController {
 
     @GetMapping("test1")
     public void test1() {
-        //multipleThreadService.test();
+        throw new BizException("???????????");
     }
 
     @GetMapping("test2")

@@ -1,57 +1,67 @@
 package com.qring.common.base.result;
 
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.StrUtil;
+import lombok.Data;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author Qring
  * @Description 返回状态码
  * @Date 2022/7/4 16:36
  * @Version 1.0
  */
-public enum ResultCode {
-    /**操作成功**/
-    RC100(100,"操作成功"),
-    /**操作失败**/
-    RC999(999,"操作失败"),
-    /**服务限流**/
-    RC200(200,"服务开启限流保护,请稍后再试!"),
-    /**服务降级**/
-    RC201(201,"服务开启降级保护,请稍后再试!"),
-    /**热点参数限流**/
-    RC202(202,"热点参数限流,请稍后再试!"),
-    /**系统规则不满足**/
-    RC203(203,"系统规则不满足要求,请稍后再试!"),
-    /**授权规则不通过**/
-    RC204(204,"授权规则不通过,请稍后再试!"),
-    /**access_denied**/
-    RC403(403,"无访问权限,请联系管理员授予权限"),
-    /**access_denied**/
-    RC401(401,"匿名用户访问无权限资源时的异常"),
-    /**服务异常**/
-    RC500(500,"系统异常，请稍后重试"),
+@Data
+public abstract class ResultCode {
 
-    INVALID_TOKEN(2001,"访问令牌不合法"),
-    ACCESS_DENIED(2003,"没有权限访问该资源"),
-    CLIENT_AUTHENTICATION_FAILED(1001,"客户端认证失败"),
-    USERNAME_OR_PASSWORD_ERROR(1002,"用户名或密码错误"),
-    UNSUPPORTED_GRANT_TYPE(1003, "不支持的认证模式");
+    private int code;
 
+    private String msg;
 
+    private ResultCode() {
+    }
 
-    /**自定义状态码**/
-    private final int code;
-    /**自定义描述**/
-    private final String message;
-
-    ResultCode(int code, String message){
+    protected ResultCode(int code, String msg) {
         this.code = code;
-        this.message = message;
+        this.msg = msg;
+        ResponseCodeContainer.put(this);
     }
 
-
-    public int getCode() {
-        return code;
+    public boolean isSuccess() {
+        return CommonResultCode.SUCCESS.getCode() == this.code;
     }
 
-    public String getMessage() {
-        return message;
+    private static class ResponseCodeContainer {
+
+        private static final Map<Integer, ResultCode> RESPONSE_CODE_MAP = new HashMap<>();
+
+        private static final Map<Class<? extends ResultCode>, int[]> RESPONSE_CODE_RANGE_MAP = new HashMap<>();
+
+        private static void register(Class<? extends ResultCode> clazz, int start, int end) {
+            Assert.isTrue(start < end,
+                    StrUtil.format("<Result Code> Class:{} start code must be less than end code!", clazz.getSimpleName()));
+            Assert.isFalse(RESPONSE_CODE_RANGE_MAP.containsKey(clazz),
+                    StrUtil.format("<Result Code> Class:{} already exist!"));
+            RESPONSE_CODE_RANGE_MAP.forEach((k, v) -> {
+                boolean judge = (start >= v[0] && start <= v[1]) || (end >= v[0] && end <= v[1]);
+                Assert.isFalse(judge,
+                        StrUtil.format("<Result Code> Class:{}'s id rang[{},{}] has intersection with class:{}"
+                                , clazz.getSimpleName(), start, end, k.getSimpleName()));
+            });
+            RESPONSE_CODE_RANGE_MAP.put(clazz, new int[]{start, end});
+        }
+
+        private static void put(ResultCode resultCode) {
+            int code = resultCode.getCode();
+            String className = resultCode.getClass().getSimpleName();
+            int[] codeRange = RESPONSE_CODE_RANGE_MAP.get(resultCode.getClass());
+            Assert.notNull(codeRange, StrUtil.format("<Result Code> Class:{} has not been registered!", className));
+            Assert.checkBetween(code, codeRange[0], codeRange[1],
+                    StrUtil.format("<Result Code> Class:{}-Id({}) out of range[{}, {}]!", className, code, codeRange[0], codeRange[1]));
+            Assert.isFalse(RESPONSE_CODE_MAP.containsKey(code), "<Result Code> Class:{}-Id({}) is repeat!");
+            RESPONSE_CODE_MAP.put(code, resultCode);
+        }
     }
 }

@@ -4,71 +4,75 @@ spring:
   main: # 设置 为true ,即 允许 同名
     allow-bean-definition-overriding: true
   application:
-    name: prepay-web
+    name: Qring
+  ## 读取多语言资源信息
+  messages:
+    basename: classpath:i18n/messages;classpath:i18n/common;classpath:i18n/validate
   datasource:
-    name: mysql_prepay
-    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://106.54.182.186:3306/crashcourse?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useSSL=false
+    username: root
+    password: oo000000
+    #连接池
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 120000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
     #druid相关配置
-    druid:
-      #监控统计拦截的filters
-      filters: stat
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      #基本属性
-      url: jdbc:mysql://106.54.182.186:3306/crashcourse?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useSSL=false
-      username: root
-      password: oo000000
-      #配置初始化大小/最小/最大
-      initial-size: 5
-      min-idle: 5
-      max-active: 20
-      #获取连接等待超时时间
-      max-wait: 60000
-      #间隔多久进行一次检测，检测需要关闭的空闲连接
-      time-between-eviction-runs-millis: 60000
-      #一个连接在池中最小生存的时间
-      min-evictable-idle-time-millis: 300000
-      validation-query: SELECT 'x'
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
-      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
-      pool-prepared-statements: false
-      max-pool-prepared-statement-per-connection-size: 20
+  #    druid:
+  #      #监控统计拦截的filters
+  #      filters: stat
+  #      driver-class-name: com.mysql.cj.jdbc.Driver
+  #      #基本属性
+  #      #url: jdbc:mysql://106.54.182.186:3306/crashcourse?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useSSL=false
+  #      username: root
+  #      password: oo000000
+  #      #配置初始化大小/最小/最大
+  #      initial-size: 5
+  #      min-idle: 5
+  #      max-active: 20
+  #      #获取连接等待超时时间
+  #      max-wait: 60000
+  #      #间隔多久进行一次检测，检测需要关闭的空闲连接
+  #      time-between-eviction-runs-millis: 60000
+  #      #一个连接在池中最小生存的时间
+  #      min-evictable-idle-time-millis: 300000
+  #      validation-query: SELECT 'x'
+  #      test-while-idle: true
+  #      test-on-borrow: false
+  #      test-on-return: false
+  #      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+  #      pool-prepared-statements: false
+  #      max-pool-prepared-statement-per-connection-size: 20
+  #      url: jdbc:mysql://106.54.182.186:3306?crashcourse
   quartz:
     #持久化到数据库方式
     job-store-type: jdbc
-  flyway:
-    enabled: true
-    # 禁止清理数据库表
-    clean-disabled: true
-    # 发生错误时禁止清理数据库
-    clean-on-validation-error: false
-    # 如果数据库不是空表，需要设置为 true，否则启动报错
-    baseline-on-migrate: true
-    # 与 baseline-on-migrate 搭配使用, 设定初始化版本, 迁移版本需要大于该版本
-    baseline-version: 1
-    # 如果
-    create-schemas: true
-    baseline-description: qring
-    placeholders:
-      name: qring
-    out-of-order: false
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
-nacos:
-  config:
-    server-addr: 106.54.182.186:8848
-#logging:
-#  level:
-#    root: INFO
-#    com.baomidou.mybatisplus: DEBUG
-#    mapper: DEBUG
+#nacos:
+#  config:
+#    server-addr: 106.54.182.186:8848
+logging:
+  level:
+    root: INFO
+    com.baomidou.mybatisplus: DEBUG
+    mapper: DEBUG
 
 

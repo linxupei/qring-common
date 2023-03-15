@@ -3,7 +3,7 @@ package com.qring.common.test.repository.mapper;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.qring.common.test.Application;
+import com.qring.common.test.QringCommonTestApplication;
 import com.qring.common.test.repository.model.entity.FaulteventDO;
 import com.qring.common.test.service.FaulteventService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Slf4j
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = QringCommonTestApplication.class)
 class TimeDOMapperTest {
     @Resource
     private FaulteventMapper faulteventMapper;

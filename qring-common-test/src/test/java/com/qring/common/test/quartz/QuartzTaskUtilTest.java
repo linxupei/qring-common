@@ -1,6 +1,6 @@
 package com.qring.common.test.quartz;
 
-import com.qring.common.test.Application;
+import com.qring.common.test.QringCommonTestApplication;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.quartz.JobKey;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  * @Version 1.0
  */
 @Slf4j
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = QringCommonTestApplication.class)
 class QuartzTaskUtilTest {
     @Resource
     private QuartzTaskUtil quartzTaskUtil;

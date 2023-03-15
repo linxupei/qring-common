@@ -5,6 +5,8 @@ import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
 /**
@@ -29,5 +31,11 @@ public class BatchUtil {
         }
         Assert.isTrue(batchSize > 0, "batch size must be greater than zero");
         Lists.partition(data, batchSize).forEach(process);
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        System.out.println(CompletableFuture.supplyAsync(() -> "111111111").handle((s, t) -> {
+            return s;
+        }).get());
     }
 }
