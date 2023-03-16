@@ -1,17 +1,28 @@
 package com.qring.common.test.easypoi;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
+import com.qring.common.test.annotation.Foo;
+import com.qring.common.test.repository.model.t.Bar;
+import com.qring.common.test.repository.model.t.CourseEntity;
+import com.qring.common.test.repository.model.t.StudentEntity;
+import com.qring.common.test.repository.model.t.TeacherEntity;
 import lombok.Data;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
@@ -23,6 +34,91 @@ import java.util.stream.IntStream;
  * @Version 1.0
  */
 public class EasyPoiTest {
+
+    public static void main(String[] args) {
+        ConcurrentHashMap<A, Boolean> resMap = new ConcurrentHashMap<>();
+        HashMap<String, String> map = new HashMap<>();
+        A a = new A();
+        resMap.put(a, true);
+        resMap.put(a, true);
+        System.out.println(a.hashCode());
+        a.setA(1);
+        System.out.println(a.hashCode());
+        resMap.put(a, false);
+        System.out.println(resMap.size());
+
+    }
+
+    @Test
+    public void test3() throws IOException, NoSuchFieldException, IllegalAccessException {
+        List<CourseEntity> list = new ArrayList<CourseEntity>();
+        CourseEntity entity1 = new CourseEntity();
+        entity1.setId("absent");
+        entity1.setName("课程1");
+        TeacherEntity teacher1 = new TeacherEntity("absent", "老师1");
+        entity1.setMathTeacher(teacher1);
+        entity1.setStudents(Arrays.asList(new StudentEntity("xs1", "学生1", 1, new Date(), new Date()), new StudentEntity("xs2", "学生2", 1, new Date(), new Date())));
+        CourseEntity entity2 = new CourseEntity();
+
+        Field field = entity2.getClass().getDeclaredField("mathTeacher");
+        //获取val字段上的Foo注解实例
+        ExcelEntity foo = field.getAnnotation(ExcelEntity.class);
+        //获取 foo 这个代理实例所持有的 InvocationHandler
+        InvocationHandler h = Proxy.getInvocationHandler(foo);
+        // 获取 AnnotationInvocationHandler 的 memberValues 字段
+        Field hField = h.getClass().getDeclaredField("memberValues");
+        // 因为这个字段事 private final 修饰，所以要打开权限
+        hField.setAccessible(true);
+        // 获取 memberValues
+        Map memberValues = (Map) hField.get(h);
+        // 修改 value 属性值
+        memberValues.put("id", "absent");
+        entity2.setId("kc2");
+        entity2.setName("课程2");
+        TeacherEntity teacher2 = new TeacherEntity("absent", "老师2");
+        entity2.setMathTeacher(teacher2);
+        entity2.setStudents(Arrays.asList(new StudentEntity("xs3", "学生3", 1, new Date(), new Date()), new StudentEntity("xs4", "学生4", 1, new Date(), new Date())));
+        list.add(entity1);
+        list.add(entity2);
+
+        ExportParams params = new ExportParams("2412312", "测试", ExcelType.XSSF);
+        Date start = new Date();
+        params.setAutoSize(true);
+        Workbook workbook = ExcelExportUtil.exportExcel(params, CourseEntity.class, list);
+        System.out.println(new Date().getTime() - start.getTime());
+        File savefile = new File("C:\\Users\\DELL\\Desktop\\");
+        if (!savefile.exists()) {
+            savefile.mkdirs();
+        }
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\DELL\\Desktop\\autoSize.xlsx");
+        workbook.write(fos);
+        fos.close();
+    }
+
+    private void test() throws NoSuchFieldException, IllegalAccessException {
+        //获取Bar实例
+        Bar bar = new Bar();
+        //获取Bar的val字段
+        Field field = bar.getClass().getDeclaredField("val");
+        //获取val字段上的Foo注解实例
+        Foo foo = field.getAnnotation(Foo.class);
+        //获取 foo 这个代理实例所持有的 InvocationHandler
+        InvocationHandler h = Proxy.getInvocationHandler(foo);
+        // 获取 AnnotationInvocationHandler 的 memberValues 字段
+        Field hField = h.getClass().getDeclaredField("memberValues");
+        // 因为这个字段事 private final 修饰，所以要打开权限
+        hField.setAccessible(true);
+        // 获取 memberValues
+        Map memberValues = (Map) hField.get(h);
+        // 修改 value 属性值
+        memberValues.put("value", "ddd");
+    }
+
+    @Data
+    static class A {
+        Integer a;
+        Integer b;
+    }
 
     @Test
     public void test2() throws Exception {
@@ -40,15 +136,15 @@ public class EasyPoiTest {
         map.put("tjmk", "t.tj_xm");
         colList.add(map);
 
-        map = new HashMap<String, Object>();
-        map.put("name", "小红挑战");
-        map.put("zq", "正确");
-        map.put("cw", "错误");
-        map.put("tj", "统计");
-        map.put("zqmk", "n:t.zq_xh");
-        map.put("cwmk", "n:t.cw_xh");
-        map.put("tjmk", "n:t.tj_xh");
-        colList.add(map);
+//        map = new HashMap<String, Object>();
+//        map.put("name", "小红挑战");
+//        map.put("zq", "正确");
+//        map.put("cw", "错误");
+//        map.put("tj", "统计");
+//        map.put("zqmk", "n:t.zq_xh");
+//        map.put("cwmk", "n:t.cw_xh");
+//        map.put("tjmk", "n:t.tj_xh");
+//        colList.add(map);
 
         value.put("colList", colList);
 
@@ -56,32 +152,35 @@ public class EasyPoiTest {
         map = new HashMap<String, Object>();
         map.put("one", "运动");
         map.put("two", "跑步");
+        map.put("three", "跑步1");
         map.put("zq_xm", 1);
         map.put("cw_xm", 2);
         map.put("tj_xm", 3);
-        map.put("zq_xh", 4);
-        map.put("cw_xh", 2);
-        map.put("tj_xh", 6);
+//        map.put("zq_xh", 4);
+//        map.put("cw_xh", 2);
+//        map.put("tj_xh", 6);
         valList.add(map);
         map = new HashMap<String, Object>();
         map.put("one", "运动");
         map.put("two", "跳高");
+        map.put("three", "跑步1");
         map.put("zq_xm", 1);
         map.put("cw_xm", 2);
         map.put("tj_xm", 3);
-        map.put("zq_xh", 4);
-        map.put("cw_xh", 2);
-        map.put("tj_xh", 6);
+//        map.put("zq_xh", 4);
+//        map.put("cw_xh", 2);
+//        map.put("tj_xh", 6);
         valList.add(map);
         map = new HashMap<String, Object>();
         map.put("one", "文化");
         map.put("two", "数学");
+        map.put("three", "跑步1");
         map.put("zq_xm", 1);
         map.put("cw_xm", 2);
         map.put("tj_xm", 3);
-        map.put("zq_xh", 4);
-        map.put("cw_xh", 2);
-        map.put("tj_xh", 6);
+//        map.put("zq_xh", 4);
+//        map.put("cw_xh", 2);
+//        map.put("tj_xh", 6);
         valList.add(map);
 
         value.put("valList", valList);
@@ -92,25 +191,6 @@ public class EasyPoiTest {
         FileOutputStream fos = new FileOutputStream("C:\\Users\\28608\\Desktop\\新建文件夹\\ExcelExportTemplateColFeTest_two.xlsx");
         book.write(fos);
         fos.close();
-    }
-
-    @Data
-    static class A {
-        Integer a;
-        Integer b;
-    }
-
-    public static void main(String[] args) {
-        ConcurrentHashMap<A, Boolean> resMap = new ConcurrentHashMap<>();
-        HashMap<String, String > map = new HashMap<>();
-        A a = new A();
-        resMap.put(a, true);
-        resMap.put(a, true);
-        System.out.println(a.hashCode());
-        a.setA(1);
-        System.out.println(a.hashCode());
-        resMap.put(a, false);
-        System.out.println(resMap.size());
     }
 
     @Test

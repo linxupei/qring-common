@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qring.common.test.repository.mapper.FaulteventMapper">
   <resultMap id="BaseResultMap" type="com.qring.common.test.repository.model.entity.FaulteventDO">
+    <!--@mbg.generated-->
     <!--@Table faultevent-->
     <id column="eventPkId" jdbcType="BIGINT" property="eventPkId" />
     <result column="projectPkId" jdbcType="VARCHAR" property="projectPkId" />
@@ -26,8 +27,9 @@
     <result column="modifyUserPkId" jdbcType="VARCHAR" property="modifyUserPkId" />
   </resultMap>
   <sql id="Base_Column_List">
-    eventPkId, projectPkId, eventCode, eventType, eventTime, recoverTime, eventDetail, 
-    tenantPkId, tenantCode, tenantName, tenantPhone, meterPkId, meterName, meterSn, confirmFlag, 
+    <!--@mbg.generated-->
+    eventPkId, projectPkId, eventCode, eventType, eventTime, recoverTime, eventDetail,
+    tenantPkId, tenantCode, tenantName, tenantPhone, meterPkId, meterName, meterSn, confirmFlag,
     confirmTime, confirmDesc, createTime, createUserPkId, modifyTime, modifyUserPkId
   </sql>
   <insert id="batchInsert" keyColumn="eventPkId" keyProperty="eventPkId" parameterType="map" useGeneratedKeys="true">

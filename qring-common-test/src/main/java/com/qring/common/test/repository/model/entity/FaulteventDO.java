@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
 * @Author Qring
@@ -45,13 +45,13 @@ public class FaulteventDO {
      * 发生时间
      */
     @TableField(value = "eventTime")
-    private Date eventTime;
+    private LocalDateTime eventTime;
 
     /**
      * 告警恢复时间
      */
     @TableField(value = "recoverTime")
-    private Date recoverTime;
+    private LocalDateTime recoverTime;
 
     /**
      * 事件详情
@@ -105,13 +105,13 @@ public class FaulteventDO {
      * 确认标识（0未确认，1已确认）
      */
     @TableField(value = "confirmFlag")
-    private Byte confirmFlag;
+    private Integer confirmFlag;
 
     /**
      * 确认时间
      */
     @TableField(value = "confirmTime")
-    private Date confirmTime;
+    private LocalDateTime confirmTime;
 
     /**
      * 确认描述
@@ -123,7 +123,7 @@ public class FaulteventDO {
      * 创建时间
      */
     @TableField(value = "createTime")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 创建人
@@ -135,7 +135,7 @@ public class FaulteventDO {
      * 更新时间
      */
     @TableField(value = "modifyTime")
-    private Date modifyTime;
+    private LocalDateTime modifyTime;
 
     /**
      * 更新人

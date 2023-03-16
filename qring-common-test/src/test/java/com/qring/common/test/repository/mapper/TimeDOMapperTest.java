@@ -1,7 +1,7 @@
 package com.qring.common.test.repository.mapper;
 
 
-import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.qring.common.test.QringCommonTestApplication;
 import com.qring.common.test.repository.model.entity.FaulteventDO;
@@ -11,8 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -41,50 +43,86 @@ class TimeDOMapperTest {
     static {
         faulteventListList = new ArrayList<>();
         faulteventDOList = new ArrayList<>();
-        List<FaulteventDO> t = new ArrayList<>();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 0; i++) {
             FaulteventDO faulteventDO = new FaulteventDO();
-            faulteventDO.setTenantPkId("1555428127333511169");
-            faulteventDO.setTenantPhone("13824128322");
-            faulteventDO.setTenantName("hwm");
-            faulteventDO.setTenantCode("ZH1000");
-            faulteventDO.setRecoverTime(new Date());
-            faulteventDO.setProjectPkId("1554668581481566210");
-            faulteventDO.setModifyUserPkId("root");
-            faulteventDO.setModifyTime(new Date());
-            faulteventDO.setMeterSn("1555428127333511169");
-            faulteventDO.setMeterPkId("1555428127333511169");
-            faulteventDO.setMeterName("1555428127333511169");
-            faulteventDO.setEventType("1555428127333511169");
-            faulteventDO.setEventTime(new Date());
+            faulteventDO.setTenantPkId(i + "1555428");
+            faulteventDO.setTenantPhone(i + "13824128322");
+            faulteventDO.setTenantName(i + "hwm");
+            faulteventDO.setTenantCode(i + "ZH1000");
+            faulteventDO.setRecoverTime(LocalDateTime.now());
+            faulteventDO.setProjectPkId(i + "1554668581481566210");
+            faulteventDO.setModifyUserPkId(i + "root");
+            faulteventDO.setModifyTime(LocalDateTime.now());
+            faulteventDO.setMeterSn(i + "1555428127333511169");
+            faulteventDO.setMeterPkId(i + "1555428127333511169");
+            faulteventDO.setMeterName(i + "1555428127333511169");
+            faulteventDO.setEventType(i + "1555428127333511169");
+            faulteventDO.setEventTime(LocalDateTime.now());
 
-            faulteventDO.setEventDetail("1555428127333511169");
-            faulteventDO.setEventCode("1555428127333511169");
-            faulteventDO.setCreateUserPkId("1555428127333511169");
-            faulteventDO.setCreateTime(new Date());
-            faulteventDO.setConfirmTime(new Date());
-            faulteventDO.setConfirmFlag((byte) 1);
-            faulteventDO.setConfirmDesc("1555428127333511169");
+            faulteventDO.setEventDetail(i + "1555428127333511169");
+            faulteventDO.setEventCode(i + "1555428127333511169");
+            faulteventDO.setCreateUserPkId(i + "1555428127333511169");
+            faulteventDO.setCreateTime(LocalDateTime.now());
+            faulteventDO.setConfirmTime(LocalDateTime.now());
+            faulteventDO.setConfirmFlag(1);
+            faulteventDO.setConfirmDesc(i + "1555428127333511169");
             faulteventDOList.add(faulteventDO);
-            t.add(BeanUtil.copyProperties(faulteventDO, FaulteventDO.class));
-            if (t.size() == 1000) {
-                faulteventListList.add(t);
-                t = new ArrayList<>();
-            }
         }
+    }
+
+    private static List<FaulteventDO> getFaulteventDOList() {
+        return null;
+    }
+
+    public static void main(String[] args) {
+        List<FaulteventDO> list = CollectionUtil.defaultIfEmpty(getFaulteventDOList(), Collections.emptyList());
+        list.sort(Comparator.comparing(FaulteventDO::getConfirmFlag));
+
     }
 
     @Test
     public void testMapper() {
         faulteventMapper.selectList(new LambdaQueryWrapper<FaulteventDO>().eq(FaulteventDO::getConfirmDesc, ""));
-        for (int i = 0; i < faulteventListList.size(); i++) {
-            faulteventMapper.batchInsert(faulteventListList.get(i));
+        for (int j = 0; j < 10; j++) {
+            List<FaulteventDO> faulteventDOList1 = new ArrayList<>(100000);
+            for (int i = 0; i < 100000; i++) {
+                FaulteventDO faulteventDO = new FaulteventDO();
+                faulteventDO.setTenantPkId(i + "1555428");
+                faulteventDO.setTenantPhone(i + "13822");
+                faulteventDO.setTenantName(i + "hwm");
+                faulteventDO.setTenantCode(i + "ZH1000");
+                faulteventDO.setRecoverTime(LocalDateTime.now());
+                faulteventDO.setProjectPkId(String.valueOf(i));
+                faulteventDO.setModifyUserPkId(i + "root");
+                faulteventDO.setModifyTime(LocalDateTime.now());
+                faulteventDO.setMeterSn(i + "155");
+                faulteventDO.setMeterPkId(i + "15554");
+                faulteventDO.setMeterName(i + "155");
+                faulteventDO.setEventType(i + "155569");
+                faulteventDO.setEventTime(LocalDateTime.now());
+
+                faulteventDO.setEventDetail(i + "1555169");
+                faulteventDO.setEventCode(i + "155169");
+                faulteventDO.setCreateUserPkId(i + "155511");
+                faulteventDO.setCreateTime(LocalDateTime.now());
+                faulteventDO.setConfirmTime(LocalDateTime.now());
+                faulteventDO.setConfirmFlag(1);
+                faulteventDO.setConfirmDesc(i + "1555");
+                faulteventDOList1.add(faulteventDO);
+            }
+            faulteventService.batchInsert(faulteventDOList1);
         }
+
+//        for (int i = 0; i < faulteventListList.size(); i++) {
+//            faulteventMapper.batchInsert(faulteventListList.get(i));
+//        }
     }
 
     @Test
     public void testService() {
-        faulteventService.saveBatch(faulteventDOList);
+        List<FaulteventDO> list = faulteventMapper.selectList(new LambdaQueryWrapper<FaulteventDO>()
+                .le(FaulteventDO::getEventPkId, 15584292));
+        System.out.println(list);
     }
 
 }

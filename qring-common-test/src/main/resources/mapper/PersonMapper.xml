@@ -13,4 +13,10 @@
     <!--@mbg.generated-->
     id, `name`, age, score
   </sql>
+
+  <update id="update">
+    select * from person;
+    select * from person;
+    select * from person;
+  </update>
 </mapper>

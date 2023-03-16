@@ -1,9 +1,9 @@
 package com.qring.common.test.jeasy;
 
-import com.qring.common.test.repository.model.entity.TimeDO;
 import lombok.extern.slf4j.Slf4j;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,9 +43,10 @@ public class JeasyTest {
 
     @Test
     public void test() {
-        TimeDO timeDO = easyRandom.nextObject(TimeDO.class);
-        System.out.println(timeDO);
-        testException(new Random().nextInt());
+//        TimeDO timeDO = easyRandom.nextObject(TimeDO.class);
+//        System.out.println(timeDO);
+//        testException(new Random().nextInt());
+        Assertions.assertEquals(1, 2);
     }
 
     public void testException(int i) {

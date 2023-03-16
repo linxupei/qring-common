@@ -46,6 +46,8 @@
         <easypoi.version>4.3.0</easypoi.version>
         <passay.version>1.6.2</passay.version>
         <problem.version>0.27.0</problem.version>
+        <kafka.version>2.0.0</kafka.version>
+        <scala.version>2.11</scala.version>
     </properties>
 
     <dependencies>
@@ -60,6 +62,17 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka_${scala.version}</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>cn.afterturn</groupId>
                 <artifactId>easypoi-base</artifactId>
