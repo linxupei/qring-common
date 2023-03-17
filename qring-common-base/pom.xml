@@ -51,5 +51,22 @@
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
         </dependency>
+
+        <!-- 转化pdf start -->
+        <dependency>
+            <groupId>aspose-words</groupId>
+            <artifactId>aspose-words</artifactId>
+            <version>18.10</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/aspose/lib/aspose-words-18.10-jdk16.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>aspose-cells</groupId>
+            <artifactId>aspose-cells</artifactId>
+            <version>20.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/aspose/lib/aspose-cells-20.4.jar</systemPath>
+        </dependency>
+        <!-- 转化pdf end -->
     </dependencies>
 </project>
