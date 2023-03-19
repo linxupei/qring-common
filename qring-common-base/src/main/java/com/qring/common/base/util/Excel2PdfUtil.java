@@ -15,6 +15,9 @@ import java.io.OutputStream;
  * @Version 1.0
  */
 public class Excel2PdfUtil {
+
+    private final static String LICENSE = "lib/aspose/license.xml";
+
     /**
      * 加载配置文件
      *
@@ -22,7 +25,7 @@ public class Excel2PdfUtil {
      */
     private static boolean getLicense() {
         boolean result = false;
-        try (InputStream in = Excel2PdfUtil.class.getClassLoader().getResourceAsStream("license.xml")) {
+        try (InputStream in = Excel2PdfUtil.class.getClassLoader().getResourceAsStream(LICENSE)) {
             License license = new License();
             license.setLicense(in);
             result = true;
@@ -42,5 +45,9 @@ public class Excel2PdfUtil {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void main(String[] args) {
+        getLicense();
     }
 }

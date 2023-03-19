@@ -12,7 +12,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 
 import javax.annotation.Resource;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -49,22 +49,22 @@ public class FaulteventService extends ServiceImpl<FaulteventMapper, FaulteventD
             faulteventDO.setTenantPhone("13824128322");
             faulteventDO.setTenantName("hwm");
             faulteventDO.setTenantCode("ZH1000");
-            faulteventDO.setRecoverTime(new Date());
+            faulteventDO.setRecoverTime(LocalDateTime.now());
             faulteventDO.setProjectPkId("1554668581481566210");
             faulteventDO.setModifyUserPkId("root");
-            faulteventDO.setModifyTime(new Date());
+            faulteventDO.setModifyTime(LocalDateTime.now());
             faulteventDO.setMeterSn("1555428127333511169");
             faulteventDO.setMeterPkId("1555428127333511169");
             faulteventDO.setMeterName("1555428127333511169");
             faulteventDO.setEventType("1555428127333511169");
-            faulteventDO.setEventTime(new Date());
+            faulteventDO.setEventTime(LocalDateTime.now());
 
             faulteventDO.setEventDetail("1555428127333511169");
             faulteventDO.setEventCode("1555428127333511169");
             faulteventDO.setCreateUserPkId("1555428127333511169");
-            faulteventDO.setCreateTime(new Date());
-            faulteventDO.setConfirmTime(new Date());
-            faulteventDO.setConfirmFlag((byte) 1);
+            faulteventDO.setCreateTime(LocalDateTime.now());
+            faulteventDO.setConfirmTime(LocalDateTime.now());
+            faulteventDO.setConfirmFlag(1);
             faulteventDO.setConfirmDesc("1555428127333511169");
             baseMapper.insert(faulteventDO);
             log.info(JSONUtil.toJsonStr(faulteventDO));

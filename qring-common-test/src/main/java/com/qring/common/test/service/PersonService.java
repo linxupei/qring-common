@@ -5,7 +5,6 @@ import com.qring.common.test.repository.mapper.PersonMapper;
 import com.qring.common.test.repository.model.entity.PersonDO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import scala.util.control.Exception;
 
 /**
  * @Author Qring

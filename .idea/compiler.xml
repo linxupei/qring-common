@@ -7,10 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="qring-common-spring" />
         <module name="qring-lock-redis-spring-boot-starter" />
         <module name="qring-common-test" />
         <module name="qring-lock-core" />
+        <module name="qring-common-web" />
         <module name="qring-common-base" />
         <module name="qring-lock-redisson-spring-boot-starter" />
       </profile>
@@ -24,8 +24,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="qring-common" options="" />
       <module name="qring-common-base" options="-parameters" />
-      <module name="qring-common-spring" options="-parameters" />
       <module name="qring-common-test" options="-parameters" />
+      <module name="qring-common-web" options="-parameters" />
       <module name="qring-lock-core" options="-parameters" />
       <module name="qring-lock-redis-spring-boot-starter" options="-parameters" />
       <module name="qring-lock-redisson-spring-boot-starter" options="-parameters" />

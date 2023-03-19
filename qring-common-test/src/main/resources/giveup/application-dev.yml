@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.54.182.186:3306/crashcourse?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useSSL=false
+    username: root
+    password: oo000000
+    #连接池
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 120000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  quartz:
+    #持久化到数据库方式
+    job-store-type: jdbc
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: INFO
+    com.baomidou.mybatisplus: DEBUG
+    mapper: DEBUG
+
+
+

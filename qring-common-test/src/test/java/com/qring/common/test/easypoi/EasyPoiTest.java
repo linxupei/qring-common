@@ -6,7 +6,7 @@ import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
-import com.qring.common.test.annotation.Foo;
+import com.qring.common.test.common.annotation.Foo;
 import com.qring.common.test.repository.model.t.Bar;
 import com.qring.common.test.repository.model.t.CourseEntity;
 import com.qring.common.test.repository.model.t.StudentEntity;

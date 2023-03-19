@@ -1,6 +1,7 @@
 package com.qring.common.test.quartz;
 
 import com.qring.common.test.QringCommonTestApplication;
+import com.qring.common.test.common.quartz.QuartzTaskUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.quartz.JobKey;
@@ -10,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 
 /**
  * @Author Qring
@@ -28,8 +28,6 @@ class QuartzTaskUtilTest {
 
     @Test
     void addJob() throws SchedulerException {
-        quartzTaskUtil.addJob("j11", "j11", "g11", "g1g",
-                HelloJob.class, CronUtil.getCron(LocalDateTime.now().plusSeconds(10)));
     }
 
     @Test

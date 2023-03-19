@@ -1,6 +1,6 @@
 package com.qring.common.test.repository.model.t;
 
-import com.qring.common.test.annotation.Foo;
+import com.qring.common.test.common.annotation.Foo;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;

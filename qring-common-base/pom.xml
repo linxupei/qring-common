@@ -32,8 +32,12 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
         <!--  Jackson end  -->
 
@@ -48,8 +52,24 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.rholder</groupId>
+            <artifactId>guava-retrying</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jeasy</groupId>
+            <artifactId>easy-random-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- 转化pdf start -->
@@ -58,14 +78,14 @@
             <artifactId>aspose-words</artifactId>
             <version>18.10</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/aspose/lib/aspose-words-18.10-jdk16.jar</systemPath>
+            <systemPath>${pom.basedir}/src/main/resources/lib/aspose/lib/aspose-words-18.10-jdk16.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>aspose-cells</groupId>
             <artifactId>aspose-cells</artifactId>
             <version>20.4</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/aspose/lib/aspose-cells-20.4.jar</systemPath>
+            <systemPath>${pom.basedir}/src/main/resources/lib/aspose/lib/aspose-cells-20.4.jar</systemPath>
         </dependency>
         <!-- 转化pdf end -->
     </dependencies>

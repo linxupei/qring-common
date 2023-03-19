@@ -1,9 +1,9 @@
 package com.qring.common.base.result;
 
+import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * @Author Qring
@@ -52,27 +52,19 @@ public class ResultDTO<T> implements Serializable {
     }
 
     public static <T> ResultDTO<T> success() {
-        return new ResultDTO<>((ResultCode) CommonResultCode.SUCCESS);
+        return new ResultDTO<>(CommonResultCode.SUCCESS);
     }
 
     public static <T> ResultDTO<T> success(T data) {
-        return new ResultDTO<>((ResultCode) CommonResultCode.SUCCESS, data);
+        return new ResultDTO<>(CommonResultCode.SUCCESS, data);
     }
 
     public static <T> ResultDTO<T> success(T data, String msg) {
-        return new ResultDTO<>((ResultCode) CommonResultCode.SUCCESS, data, msg);
+        return new ResultDTO<>(CommonResultCode.SUCCESS, data, msg);
     }
 
     public static <T> ResultDTO<T> fail() {
-        return new ResultDTO<>((ResultCode) CommonResultCode.SYSTEM_ERROR);
-    }
-
-    public static <T> ResultDTO<T> fail(ResultCode resultCode) {
-//        try {
-//            resultCode.setMsg(((MessageSourceSupport)Objects.<Object>requireNonNull(
-//                    GlobalApplicationContext.getBean(MessageSourceSupport.class))).getMessageByDefaultLocale(resultCode.getMsg()));
-//        } catch (NoSuchBeanDefinitionException noSuchBeanDefinitionException) {}
-        return new ResultDTO<>(resultCode);
+        return new ResultDTO<>(CommonResultCode.SYSTEM_ERROR);
     }
 
     public static <T> ResultDTO<T> fail(String msg) {
@@ -91,48 +83,6 @@ public class ResultDTO<T> implements Serializable {
         this.code = code;
         this.msg = msg;
         this.data = data;
-        if (Objects.nonNull(this.code))
-            this.success = this.code.equals(CommonResultCode.SUCCESS.getCode()) ? Boolean.TRUE : Boolean.FALSE;
-    }
-
-    public String getMsg() {
-        return this.msg;
-    }
-
-    public ResultDTO<T> setMsg(String msg) {
-        this.msg = msg;
-        return this;
-    }
-
-    public Integer getCode() {
-        return this.code;
-    }
-
-    public ResultDTO<T> setCode(Integer code) {
-        this.code = code;
-        return this;
-    }
-
-    public T getData() {
-        return this.data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public boolean isSuccess() {
-        if (null == this.success) {
-            return (Objects.nonNull(this.code) && CommonResultCode.SUCCESS.getCode() == this.code);
-        }
-        return this.success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
-    public String toString() {
-        return "ResultDTO{core=" + this.code + ", msg='" + this.msg + '\'' + ", success=" + isSuccess() + ", data=" + this.data + '}';
+        this.success = ObjectUtil.equal(this.code, CommonResultCode.SUCCESS.getCode()) ? Boolean.TRUE : Boolean.FALSE;
     }
 }

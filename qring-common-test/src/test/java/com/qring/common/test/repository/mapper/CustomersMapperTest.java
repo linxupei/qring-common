@@ -2,7 +2,7 @@ package com.qring.common.test.repository.mapper;
 
 import com.google.common.base.Preconditions;
 import com.qring.common.test.QringCommonTestApplication;
-import com.qring.common.test.quartz.QuartzTaskUtil;
+import com.qring.common.test.common.quartz.QuartzTaskUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

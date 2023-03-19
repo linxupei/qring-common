@@ -2,8 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/qring-common-base/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/qring-common-spring/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qring-common-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qring-common-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qring-common-web/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qring-lock-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qring-lock-redis-spring-boot-starter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qring-lock-redisson-spring-boot-starter/src/main/java" charset="UTF-8" />

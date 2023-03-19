@@ -2,6 +2,7 @@ package com.qring.common.base.result;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
+import com.qring.common.base.annotation.ResultCodeAT;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -39,11 +40,17 @@ public abstract class ResultCode {
 
         private static final Map<Class<? extends ResultCode>, int[]> RESPONSE_CODE_RANGE_MAP = new HashMap<>();
 
-        private static void register(Class<? extends ResultCode> clazz, int start, int end) {
+        private static void register(Class<? extends ResultCode> clazz) {
+            if (RESPONSE_CODE_RANGE_MAP.containsKey(clazz)) {
+                return;
+            }
+            ResultCodeAT annotation = clazz.getAnnotation(ResultCodeAT.class);
+            Assert.notNull(annotation,
+                    StrUtil.format("<Result Code> Class:{} must be annotation with @ResultCodeAT", clazz.getSimpleName()));
+            int start = annotation.start();
+            int end = annotation.end();
             Assert.isTrue(start < end,
                     StrUtil.format("<Result Code> Class:{} start code must be less than end code!", clazz.getSimpleName()));
-            Assert.isFalse(RESPONSE_CODE_RANGE_MAP.containsKey(clazz),
-                    StrUtil.format("<Result Code> Class:{} already exist!"));
             RESPONSE_CODE_RANGE_MAP.forEach((k, v) -> {
                 boolean judge = (start >= v[0] && start <= v[1]) || (end >= v[0] && end <= v[1]);
                 Assert.isFalse(judge,
@@ -54,6 +61,7 @@ public abstract class ResultCode {
         }
 
         private static void put(ResultCode resultCode) {
+            register(resultCode.getClass());
             int code = resultCode.getCode();
             String className = resultCode.getClass().getSimpleName();
             int[] codeRange = RESPONSE_CODE_RANGE_MAP.get(resultCode.getClass());

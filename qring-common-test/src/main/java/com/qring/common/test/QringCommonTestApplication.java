@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2022/8/18 14:18
  * @Version 1.0
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.qring.common"})
 // @NacosPropertySource(dataId = "test", autoRefreshed = true)
 @MapperScan(basePackages = {"com.qring.common.test.repository"})
 public class QringCommonTestApplication {

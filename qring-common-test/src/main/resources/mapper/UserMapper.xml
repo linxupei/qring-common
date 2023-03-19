@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qring.common.test.repository.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.qring.common.test.repository.model.entity.UserDO">
+    <!--@mbg.generated-->
+    <!--@Table qr_user-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="enable" jdbcType="TINYINT" property="enable" />
+    <result column="account_non_expired" jdbcType="TINYINT" property="accountNonExpired" />
+    <result column="account_non_locked" jdbcType="TINYINT" property="accountNonLocked" />
+    <result column="credentials_non_expired" jdbcType="TINYINT" property="credentialsNonExpired" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, nickname, mobile, `password`, `enable`, account_non_expired, account_non_locked, 
+    credentials_non_expired, email
+  </sql>
+</mapper>
