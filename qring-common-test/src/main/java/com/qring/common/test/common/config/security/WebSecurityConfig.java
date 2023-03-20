@@ -1,6 +1,7 @@
 package com.qring.common.test.common.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qring.common.test.common.config.security.filter.JwtFilter;
 import com.qring.common.test.common.config.security.filter.RestAuthenticationFilter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -49,6 +50,8 @@ public class WebSecurityConfig {
     private UserDetailsService userDetailsService;
     @Resource
     private UserDetailsPasswordService userDetailsPasswordService;
+    @Resource
+    private JwtFilter jwtFilter;
 
     public static void main(String[] args) {
         PasswordEncoder encoder = new WebSecurityConfig().passwordEncoder();
@@ -77,7 +80,7 @@ public class WebSecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 // 启用认证头, 可以通过请求头将用户密码发过来
                 .httpBasic(Customizer.withDefaults())
-                .addFilterAt(restAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAt(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         ;
         return httpSecurity.build();
     }

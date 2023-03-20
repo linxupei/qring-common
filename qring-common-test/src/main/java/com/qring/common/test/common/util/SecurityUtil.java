@@ -8,7 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.security.Principal;
+import java.util.Optional;
 
 /**
  * @Author Qring
@@ -18,6 +22,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @Slf4j
 public class SecurityUtil {
+
+    private static final String ANONYMOUS_USER = "anonymous";
 
     /**
      * 描述根据账号密码进行调用security进行认证授权 主动调
@@ -38,10 +44,32 @@ public class SecurityUtil {
         return authenticate.getPrincipal();
     }
 
+    public static String getCurrentLogin() {
+        return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+                .map(Authentication::getPrincipal)
+                .map(principal -> {
+                    // 大多数 AuthenticationManager 会返回 UserDetails ，提供更多信息
+                    if (principal instanceof UserDetails) {
+                        UserDetails userDetails = (UserDetails) principal;
+                        return userDetails.getUsername();
+                    }
+                    // 如果没有更多信息，可以看一下是否是一个 Principal
+                    if (principal instanceof Principal) {
+                        return ((Principal) principal).getName();
+                    }
+                    // 其他情况看作是一个用户名
+                    return String.valueOf(principal);
+                })
+                // 如果未认证，那么 Authentication 为 Null
+                // 可以在未受安全保护的 URL 中实验
+                // 此次返回匿名用户
+                .orElse(ANONYMOUS_USER);
+    }
+
     /**
      * 获取当前登录的所有认证信息
      *
-     * @return
+     * @return 获取当前登录的所有认证信息
      */
     public static Authentication getAuthentication() {
         SecurityContext context = SecurityContextHolder.getContext();
@@ -51,7 +79,7 @@ public class SecurityUtil {
     /**
      * 获取当前登录用户信息
      *
-     * @return
+     * @return 获取当前登录用户信息
      */
     public static Object getUserInfo() {
         Authentication authentication = getAuthentication();

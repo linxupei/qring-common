@@ -45,9 +45,9 @@
         <mysql-backup4j.version>1.2.1</mysql-backup4j.version>
         <easypoi.version>4.3.0</easypoi.version>
         <passay.version>1.6.2</passay.version>
-        <problem.version>0.27.0</problem.version>
         <kafka.version>2.0.0</kafka.version>
         <scala.version>2.11</scala.version>
+        <jjwt.version>0.11.5</jjwt.version>
     </properties>
 
     <dependencies>
@@ -218,12 +218,23 @@
                 <version>${mysql.version}</version>
             </dependency>
 
-            <!--      全局异常处理      -->
+            <!-- JWT 依赖开始 -->
             <dependency>
-                <groupId>org.zalando</groupId>
-                <artifactId>problem-spring-web-starter</artifactId>
-                <version>${problem.version}</version>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <!-- JWT 依赖结束 -->
         </dependencies>
     </dependencyManagement>
 
