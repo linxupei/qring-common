@@ -48,6 +48,8 @@
         <kafka.version>2.0.0</kafka.version>
         <scala.version>2.11</scala.version>
         <jjwt.version>0.11.5</jjwt.version>
+        <otp.version>0.4.0</otp.version>
+        <embedded.redis.version>0.7.2</embedded.redis.version>
     </properties>
 
     <dependencies>
@@ -235,6 +237,19 @@
                 <version>${jjwt.version}</version>
             </dependency>
             <!-- JWT 依赖结束 -->
+
+            <!-- Java OTP 依赖 -->
+            <dependency>
+                <groupId>com.eatthepath</groupId>
+                <artifactId>java-otp</artifactId>
+                <version>${otp.version}</version>
+            </dependency>
+            <!-- 嵌入式 Redis 依赖，集成测试时需要 -->
+            <dependency>
+                <groupId>it.ozimov</groupId>
+                <artifactId>embedded-redis</artifactId>
+                <version>${embedded.redis.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
