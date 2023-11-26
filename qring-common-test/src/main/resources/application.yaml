@@ -1,11 +1,6 @@
 server:
-  port: ${SERVER_PORT:8081}
-  error:
-    whitelabel:
-      enabled: true
-  servlet:
-    encoding:
-      force: true
+  port: 8081
+
 spring:
   application:
     name: Qring
@@ -34,10 +29,6 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  config:
-    activate:
-      on-profile:
-        - dev
 
 mybatis-plus:
   configuration:
