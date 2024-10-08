@@ -5,6 +5,8 @@ import com.qring.common.test.common.config.security.filter.JwtFilter;
 import com.qring.common.test.common.config.security.filter.RestAuthenticationFilter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -28,9 +30,15 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.util.ReflectionUtils;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
+import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Author Qring
@@ -108,6 +116,44 @@ public class WebSecurityConfig {
                 "SHA-1", new MessageDigestPasswordEncoder("SHA-1")
         );
         return new DelegatingPasswordEncoder(idForEncode, encoders);
+    }
+
+    /**
+     * 解决springfox空指针异常
+     *
+     * @return
+     */
+    @Bean
+    public BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
+        return new BeanPostProcessor() {
+
+            @Override
+            public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+                if (bean instanceof WebMvcRequestHandlerProvider) {
+                    customizeSpringfoxHandlerMappings(getHandlerMappings(bean));
+                }
+                return bean;
+            }
+
+            private <T extends RequestMappingInfoHandlerMapping> void customizeSpringfoxHandlerMappings(List<T> mappings) {
+                List<T> copy = mappings.stream()
+                        .filter(mapping -> mapping.getPatternParser() == null)
+                        .collect(Collectors.toList());
+                mappings.clear();
+                mappings.addAll(copy);
+            }
+
+            @SuppressWarnings("unchecked")
+            private List<RequestMappingInfoHandlerMapping> getHandlerMappings(Object bean) {
+                try {
+                    Field field = ReflectionUtils.findField(bean.getClass(), "handlerMappings");
+                    field.setAccessible(true);
+                    return (List<RequestMappingInfoHandlerMapping>) field.get(bean);
+                } catch (IllegalArgumentException | IllegalAccessException e) {
+                    throw new IllegalStateException(e);
+                }
+            }
+        };
     }
 
     private RestAuthenticationFilter restAuthenticationFilter() throws Exception {

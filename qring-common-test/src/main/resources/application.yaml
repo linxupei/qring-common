@@ -1,6 +1,14 @@
-server:
-  port: 8081
+redis-url: 10.0.110.36
+redis-port: 6379
 
+server:
+  port: ${SERVER_PORT:8081}
+  error:
+    whitelabel:
+      enabled: true
+  servlet:
+    encoding:
+      force: true
 spring:
   application:
     name: Qring
@@ -9,9 +17,9 @@ spring:
     basename: classpath:i18n/messages;classpath:i18n/common;classpath:i18n/validate
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://106.54.182.186:3306/crashcourse?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useSSL=false
+    url: jdbc:mysql://10.0.110.36:3306/prepay?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&useSSL=false
     username: root
-    password: oo000000
+    password: root
     #连接池
     hikari:
       minimum-idle: 5
@@ -25,10 +33,26 @@ spring:
   quartz:
     #持久化到数据库方式
     job-store-type: jdbc
+  # Redis配置
+  redis:
+    database: 0
+    host: ${redis-url}
+    port: ${redis-port}
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+  #  main:
+  #    allow-bean-definition-overriding: true
   # knife4j设置
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+#    activate:
+#      on-profile:
+#        - dev
 
 mybatis-plus:
   configuration:
